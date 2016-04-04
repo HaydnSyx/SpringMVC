@@ -1,0 +1,8 @@
+#以'#'开始的行，被视为注释
+
+#忽略所有生成的.class文件，不包含.classpath
+*.class
+!.classpath
+
+#忽略build目录，不忽略build文件
+build/
