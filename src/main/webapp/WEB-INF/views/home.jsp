@@ -19,5 +19,7 @@
 	<a href="<%=request.getContextPath()%>/webflow/init">webflow测试页面</a>
 	<br />
 	<a href="<%=request.getContextPath()%>/mybatis/init">mybatis测试页面</a>
+	<br />
+	<a href="<%=request.getContextPath()%>/security/init">security测试页面</a>
 </body>
 </html>
