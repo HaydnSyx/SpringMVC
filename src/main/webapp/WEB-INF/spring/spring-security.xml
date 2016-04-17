@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:bean xmlns="http://www.springframework.org/schema/security"
+<beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
@@ -8,12 +8,14 @@
 
 	<!-- 一下路径不需要验证 -->
 	<http pattern="/security/login" security="none" />
-	
+	<http pattern="/webflow/init" security="none" />
+
 	<http auto-config="true">
 		<!-- 设置验证路径 -->
 		<intercept-url pattern="/security/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/pizza/**" access="ROLE_ADMIN" />
 		<form-login login-page="/security/login"
-			authentication-failure-url="/security/login" />
+			default-target-url="/security/init" authentication-failure-url="/security/login?error=true" />
 		<!-- 启用remember-me功能，单位为秒 -->
 		<remember-me key="customKey" token-validity-seconds="604800" />
 	</http>
@@ -24,4 +26,18 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-</beans:bean>
+
+	<!-- 启用用户的缓存功能 -->
+	<!-- <beans:bean id="userCache" class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
+		<beans:property name="cache" ref="userEhCache" />
+	</beans:bean>
+	<beans:bean id="userEhCache"
+		class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<beans:property name="cacheName" value="userCache" />
+		<beans:property name="cacheManager" ref="cacheManager" />
+	</beans:bean>
+
+	<beans:bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" /> -->
+
+</beans:beans>
