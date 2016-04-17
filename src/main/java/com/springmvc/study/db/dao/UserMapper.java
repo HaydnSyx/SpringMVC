@@ -15,7 +15,8 @@ public interface UserMapper {
 
 	int insert(User record);
 
-	@TriggersRemove(cacheName = "mallListCache", removeAll = true)
+	// 当添加数据时移除全部缓存
+	// @TriggersRemove(cacheName = "mallListCache", removeAll = true)
 	int insertSelective(User record);
 
 	User selectByPrimaryKey(String id);
@@ -26,6 +27,7 @@ public interface UserMapper {
 
 	int updateByPrimaryKey(User record);
 
-	@Cacheable(cacheName = "mallListCache")
+	// 当查询时添加缓存
+	//@Cacheable(cacheName = "mallListCache")
 	List<User> findAll();
 }
