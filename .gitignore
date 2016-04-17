@@ -6,3 +6,4 @@
 
 #忽略build目录，不忽略build文件
 build/
+/target/
