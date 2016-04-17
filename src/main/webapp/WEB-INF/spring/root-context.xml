@@ -13,15 +13,12 @@
 	default-autowire="byName">
 
 	<import resource="spring-security.xml" />
-	<!-- <import resource="classpath:ehcache.xml" /> -->
 	<!-- 导入setting文件 -->
 	<context:property-placeholder location="classpath:setting.properties" />
 
 	<context:annotation-config />
 
 	<context:component-scan base-package="com.springmvc.study" />
-
-	<!-- <cache:annotation-driven cache-manager="cacheManager"/> -->
 
 	<!-- 数据源 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">

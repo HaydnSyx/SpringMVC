@@ -18,7 +18,8 @@
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
-	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" /> -->
+	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
+		/> -->
 
 	<!-- 数据验证 -->
 	<beans:bean id="conversion-service"

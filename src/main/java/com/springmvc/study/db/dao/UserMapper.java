@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.springmvc.study.db.model.User;
 
 @Repository
@@ -13,6 +15,7 @@ public interface UserMapper {
 
 	int insert(User record);
 
+	@TriggersRemove(cacheName = "mallListCache", removeAll = true)
 	int insertSelective(User record);
 
 	User selectByPrimaryKey(String id);
@@ -23,5 +26,6 @@ public interface UserMapper {
 
 	int updateByPrimaryKey(User record);
 
+	@Cacheable(cacheName = "mallListCache")
 	List<User> findAll();
 }
