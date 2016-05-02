@@ -23,5 +23,7 @@
 	<a href="<%=request.getContextPath()%>/security/init">security测试页面</a>
 	<br />
 	<a href="<%=request.getContextPath()%>/ehcache/init">ehcache测试页面</a>
+	<br />
+	<a href="<%=request.getContextPath()%>/lottery/init">抽奖测试页面</a>
 </body>
 </html>
