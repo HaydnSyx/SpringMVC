@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.springmvc.study.lottery.model.ActivityPrize;
+import com.springmvc.study.lottery.model.PrizeSingle;
 
 public class LotteryUtil {
 	/**
@@ -42,8 +43,11 @@ public class LotteryUtil {
 		return sortOrignalRates.indexOf(nextDouble);
 	}
 
-	public static synchronized void changPrizeListAndWeight(List<ActivityPrize> activityPrizeList,
-			List<Double> weightList, int index) {
+	public static synchronized void changPrizeListAndWeight(PrizeSingle prizeSingle, int index) {
+
+		List<ActivityPrize> activityPrizeList = prizeSingle.getActivityPrizeList();
+		List<Double> weightList = prizeSingle.getWeightList();
+
 		ActivityPrize o = activityPrizeList.get(index);
 		long prizeNum = o.getPrizeNum();
 		// 修改奖品数量
@@ -53,5 +57,8 @@ public class LotteryUtil {
 		if (prizeNum == 0) {
 			weightList.set(index, 0d);
 		}
+		
+		prizeSingle.setActivityPrizeList(activityPrizeList);
+		prizeSingle.setWeightList(weightList);
 	}
 }
