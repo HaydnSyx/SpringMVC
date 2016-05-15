@@ -9,9 +9,13 @@
 <script src="<%=request.getContextPath()%>/resources/js/jquery-1.12.1.min.js" charset="UTF-8" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/layer-v2.2/layer/layer.js" charset="UTF-8" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/resources/js/layer-v2.2/layer/skin/layer.css" rel="stylesheet" type="text/css" media="screen">
+<link href="<%=request.getContextPath()%>/resources/css/animate.min.css" rel="stylesheet" type="text/css" media="screen">
+<link href="<%=request.getContextPath()%>/resources/css/jPages.css" rel="stylesheet" type="text/css" media="screen">
+<script src="<%=request.getContextPath()%>/resources/js/jPages.min.js" charset="UTF-8" type="text/javascript"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SpringMVC</title>
 <script type="text/javascript">
+
 	function del(id){
 		layer.confirm('您确定要删除此条信息？', {icon: 3, title:'询问'}, function(index) {
 			$.ajax({
@@ -33,7 +37,7 @@
 <body>
 	<a href="<%=request.getContextPath()%>/mybatis/detail">添加\修改</a>
 	<br>
-	<table border="1" bordercolor="#a0c6e5" style="border-collapse: collapse;">
+	<table id="mybatisTable" border="1" bordercolor="#a0c6e5" style="border-collapse: collapse;">
 		<tr>
 			<th align="center">姓名</th>
 			<th align="center">密码</th>
@@ -56,10 +60,12 @@
 				<c:if test="${user.hasPhone == false}"><td align="center">×</td></c:if>
 				<c:if test="${user.sex == 1}"><td align="center">男</td></c:if>
 				<c:if test="${user.sex == 2}"><td align="center">女</td></c:if>
+				<c:if test="${empty user.sex}"><td align="center">-</td></c:if>
 				<td align="center" width="400px">${user.address}</td>
 				<td align="center"><a href="#" style="text-decoration: none;" onclick="del('${user.id}')">删除</a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	总数：${total}
 </body>
 </html>

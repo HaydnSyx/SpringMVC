@@ -1,7 +1,6 @@
 package com.springmvc.study.mybatis.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageInfo;
 import com.springmvc.study.common.BaseServiceImpl;
-import com.springmvc.study.db.model.User;
 import com.springmvc.study.mybatis.model.UserModel;
 import com.springmvc.study.util.CommonUtil;
 
@@ -26,15 +25,13 @@ public class MybatisController {
 	private BaseServiceImpl mybatisInitService;
 
 	// json测试页面初始化
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "init", method = RequestMethod.GET)
-	public ModelAndView mybatisInit() throws Exception {
+	public ModelAndView mybatisInit(String page) throws Exception {
 		ModelAndView mv = new ModelAndView("mybatis/init");
-
-		List<User> userList = (List<User>) mybatisInitService.handleWithoutTransaction();
-
-		mv.addObject("userList", userList);
-
+		PageInfo pageInfo = (PageInfo) mybatisInitService.handleWithoutTransaction();
+		mv.addObject("userList", pageInfo.getList());
+		mv.addObject("total", pageInfo.getTotal());
 		return mv;
 	}
 
